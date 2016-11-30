@@ -47,21 +47,28 @@ function oneDayOfUser(){// we parse all transaction list
         }
     );
 length = i-1;//after last cycle step i=last step+1
-StudentH = {length : length, TypeH : TypeA ,
-             OperationNameH : OperationNameA,
-            AmountMinH : AmountMinA,}
+StudentH = {length : length,
+            TypeH : TypeA ,
+            OperationNameH : OperationNameA,
+            AmountMinH : AmountMinA,
+            AmountMaxH : AmountMaxA,
+            AmountMinH : AmountMinA,
+            CurrencyH : CurrencyA,
+            RateH : RateA,
+            PeriodH : PeriodA,
+            AccountH : AccountA}
  return StudentH;   
 }
 for(i=1; i<oneDayOfUser().length+1; i++){
 
-print(  "Type"+ oneDayOfUser().TypeA[i]+
-        "OperationName"+ oneDayOfUser().OperationNameA[i]+
-        "AmountMin"+ oneDayOfUser().AmountMinA[i]+
-        "AmountMax"+ oneDayOfUser().AmountMaxA[i]+
-        "Currency"+ oneDayOfUser().CurrencyA[i]+
-        "Rate"+ oneDayOfUser().RateA[i]+
-        "Period"+ oneDayOfUser().PeriodA[i]+
-        "Account"+ oneDayOfUser().AccountA[i]
+print(  "Type"+"--"+ oneDayOfUser().TypeH[i]+"/"+
+        "OperationName"+ "--"+oneDayOfUser().OperationNameH[i]+"/"+
+        "AmountMin"+ "--"+oneDayOfUser().AmountMinH[i]+"/"+
+        "AmountMax"+ "--"+oneDayOfUser().AmountMaxH[i]+"/"+
+        "Currency"+ "--"+oneDayOfUser().CurrencyH[i]+"/"+
+        "Rate"+ "--"+oneDayOfUser().RateH[i]+"/"+
+        "Period"+ "--"+oneDayOfUser().PeriodH[i]+"/"+
+        "Account"+ "--"+oneDayOfUser().AccountH[i]+"/"
 );
 }
 /*
