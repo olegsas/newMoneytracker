@@ -20,21 +20,22 @@ function randomByr(min, max){
 
 }
 
-function oneDayOfUser(){
-    var i = 0, 
-    TypeA = [],
-    OperationNameA = []
+function oneDayOfUser(){// we parse all transaction list
+    var i = 1, 
+    TypeA = [],// TypeA because there is an array of Type
+    OperationNameA = [],// 
     AmountMinA = [],
     AmountMaxA = [],
     CurrencyA = [],
-    RateA = [],
+    RateA = [],// Rate[2] - is the Rate field of the transaction 2
     PeriodA = [],
     AccountA = [],
-    StudentH = {};
-    db.student.find().forEach(
+    StudentH = {},// this is the hash, {TypeH : TypeA, and so on}
+    cursor = db.student.find(),
+    length;
+    cursor.forEach(
         function(obj){
-            i++;
-            TypeA[i] = obj.Type;
+            TypeA[i] = obj.Type;// we find certain field of the certain transaction
             OperationNameA[i] = obj.OperationName;
             AmountMinA[i] = obj.AmountMin;
             AmountMaxA[i] = obj.AmountMax;
@@ -42,15 +43,27 @@ function oneDayOfUser(){
             RateA[i] = obj.Rate;
             PeriodA[i] = obj.Period;
             AccountA[i] = obj.Account;
+                i++; 
         }
-
     );
- StudentH = {TypeH : TypeA ,
+length = i-1;//after last cycle step i=last step+1
+StudentH = {length : length, TypeH : TypeA ,
              OperationNameH : OperationNameA,
             AmountMinH : AmountMinA,}
  return StudentH;   
 }
+for(i=1; i<oneDayOfUser().length+1; i++){
 
-for(i=0; i<10; i++){
-    print(oneDayOfUser().TypeH[i]+"--"+oneDayOfUser().OperationNameH[i]);
+print(  "Type"+ oneDayOfUser().TypeA[i]+
+        "OperationName"+ oneDayOfUser().OperationNameA[i]+
+        "AmountMin"+ oneDayOfUser().AmountMinA[i]+
+        "AmountMax"+ oneDayOfUser().AmountMaxA[i]+
+        "Currency"+ oneDayOfUser().CurrencyA[i]+
+        "Rate"+ oneDayOfUser().RateA[i]+
+        "Period"+ oneDayOfUser().PeriodA[i]+
+        "Account"+ oneDayOfUser().AccountA[i]
+);
 }
+/*
+    print(oneDayOfUser().TypeH[i]+"--"+oneDayOfUser().OperationNameH[i]);
+}*/
