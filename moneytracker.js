@@ -21,20 +21,36 @@ function randomByr(min, max){
 }
 
 function oneDayOfUser(){
-    var i = 0;
+    var i = 0, 
+    TypeA = [],
+    OperationNameA = []
+    AmountMinA = [],
+    AmountMaxA = [],
+    CurrencyA = [],
+    RateA = [],
+    PeriodA = [],
+    AccountA = [],
+    StudentH = {};
     db.student.find().forEach(
-        function(myName){
+        function(obj){
             i++;
-            print("Operation Name: " + myName.OperationName);
-            print("i= " + i);
-            db.student.update()
+            TypeA[i] = obj.Type;
+            OperationNameA[i] = obj.OperationName;
+            AmountMinA[i] = obj.AmountMin;
+            AmountMaxA[i] = obj.AmountMax;
+            CurrencyA[i] = obj.Currency;
+            RateA[i] = obj.Rate;
+            PeriodA[i] = obj.Period;
+            AccountA[i] = obj.Account;
         }
 
     );
-    
+ StudentH = {TypeH : TypeA ,
+             OperationNameH : OperationNameA,
+            AmountMinH : AmountMinA,}
+ return StudentH;   
 }
 
-/*oneDayOfUser();*/
-var student = [];
-student = db.student.find();
-print(student);
+for(i=0; i<10; i++){
+    print(oneDayOfUser().TypeH[i]+"--"+oneDayOfUser().OperationNameH[i]);
+}
