@@ -27,10 +27,14 @@ function oneDayOfUser(){
             i++;
             print("Operation Name: " + myName.OperationName);
             print("i= " + i);
+            db.student.update()
         }
 
     );
     
 }
 
-oneDayOfUser();
+/*oneDayOfUser();*/
+var student = [];
+student = db.student.find();
+print(student);
