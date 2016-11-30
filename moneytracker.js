@@ -72,11 +72,28 @@ print(  "Type"+"--"+ oneDayOfUser().Type[i]+"/"+
 );
 }*/
 
-function run(startDay, finishDay){// this function choose and write the transactions from the firstDay to the finishDay
-    var now = new Date(2016, 11, 15);
-    now.setFullYear(2010); 
-    return now;
+function standartDate(startDay, finishDay){// this function choose and write the transactions from the firstDay to the finishDay
+    var stDate = {};
+
+    var startDayA = startDay.split("/"),// we have got an array of 3 numbers in a string type
+        finishDayA = finishDay.split("/");
+    
+    var startDATE = new Date();
+        startDATE.setFullYear(startDayA[2]);// A means Array
+        startDATE.setMonth(startDayA[1]-1);// we have months in range of 0...11
+        startDATE.setDate(startDayA[0]);// startDATE is in a correct format
+
+    var finishDATE = new Date();
+        finishDATE.setFullYear(finishDayA[2]);
+        finishDATE.setMonth(finishDayA[1]-1);
+        finishDATE.setDate(finishDayA[0]);// finishDATE is in a correct format
+    
+     stDate.start = startDATE;
+     stDate.finish = finishDATE;
+    
+    return stDate;
 
 }
 
-print(run());
+print(standartDate("12/8/2011", "2/11/2013").start);
+print(standartDate("12/8/2011", "2/11/2013").finish);
