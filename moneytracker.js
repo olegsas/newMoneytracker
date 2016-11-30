@@ -59,7 +59,7 @@ StudentH = {length : length,
             Account : AccountA}
  return StudentH;   
 }
-for(i=1; i<oneDayOfUser().length+1; i++){
+/*for(i=1; i<oneDayOfUser().length+1; i++){
 
 print(  "Type"+"--"+ oneDayOfUser().Type[i]+"/"+
         "OperationName"+ "--"+oneDayOfUser().OperationName[i]+"/"+
@@ -70,7 +70,13 @@ print(  "Type"+"--"+ oneDayOfUser().Type[i]+"/"+
         "Period"+ "--"+oneDayOfUser().Period[i]+"/"+
         "Account"+ "--"+oneDayOfUser().Account[i]+"/"
 );
-}
-/*
-    print(oneDayOfUser().TypeH[i]+"--"+oneDayOfUser().OperationNameH[i]);
 }*/
+
+function run(startDay, finishDay){// this function choose and write the transactions from the firstDay to the finishDay
+    var now = new Date(2016, 11, 15);
+    now.setFullYear(2010); 
+    return now;
+
+}
+
+print(run());
