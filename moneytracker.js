@@ -95,10 +95,21 @@ function standartDate(startDay, finishDay){// this function choose and write the
 
 }
 
-print(standartDate("12/8/2011", "2/11/2013").start);
-print(standartDate("12/8/2011", "2/11/2013").finish);
 
 function plusWeek(nowDay){// function finds a period in 1 week for a transactions
     var pointOne = standartDate(nowDay, nowDay).start//start day
-    var pointTwo = 
-}
+    var day = (pointOne.getDate());// day of a week in range 0...6
+
+    var pointTwo = pointOne;// we assign pointOne to pointTwo because we gonna use a method setDate()
+    var x = pointTwo.setDate(day+10);
+    return pointTwo;
+}    
+   print(plusWeek("1/1/2010"));
+/*var D = new Date();
+var day = D.getDate();
+print("old day - " + D);
+print("day-" + day);
+var newDay = day+40;
+var x = D.setDate(newDay);
+print("New date- " + D);*/
+    
