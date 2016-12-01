@@ -59,24 +59,12 @@ StudentH = {length : length,
             Account : AccountA}
  return StudentH;   
 }
-/*for(i=1; i<oneDayOfUser().length+1; i++){
-
-print(  "Type"+"--"+ oneDayOfUser().Type[i]+"/"+
-        "OperationName"+ "--"+oneDayOfUser().OperationName[i]+"/"+
-        "AmountMin"+ "--"+oneDayOfUser().AmountMin[i]+"/"+
-        "AmountMax"+ "--"+oneDayOfUser().AmountMax[i]+"/"+
-        "Currency"+ "--"+oneDayOfUser().Currency[i]+"/"+
-        "Rate"+ "--"+oneDayOfUser().Rate[i]+"/"+
-        "Period"+ "--"+oneDayOfUser().Period[i]+"/"+
-        "Account"+ "--"+oneDayOfUser().Account[i]+"/"
-);
-}*/
 
 function standartDate(anyDay){// this function normalize string date into a Date object
 
     var anyDayA = anyDay.split("/"),// we have got an array of 3 numbers in a string type
     
-    var anyDATE = new Date();
+        anyDATE = new Date();
         anyDATE.setFullYear(anyDayA[2]);// A means Array
         anyDATE.setMonth(anyDayA[1]-1);// we have months in range of 0...11
         anyDATE.setDate(anyDayA[0]);// anyDATE is in a correct format
@@ -95,8 +83,28 @@ function plusWeek(nowDay){// function finds a period in 1 week for a transaction
     var x = pointTwo.setDate(day+10);
     return pointTwo;
 }    
-   print(plusWeek("1/1/2010"));
+   /*print(plusWeek("1/1/2010"));
+   /*var now = new Date();*/
+  /* print(new Date(2016,12,0).getDate());*/
 
 function run(startDate, finishDate){// global function runs transaction generation
+    var startDATE = standartDate(startDate),
+        start_Day = startDATE.getDate(),
+        start_Month = startDATE.getMonth(),// month is in range 0...11
+        start_Year = startDATE.getYear(),
+        max_day_month = new  Date(start_Year, start_Month+1, 0).getDate();// how many days in month
+        
+        // we choose a random day between a start day and day max_day_month
+        var randomStartDay = Math.floor(Math.random()*(max_day_month-start_Day) + start_Day);
+        print("start_Day - "+ start_Day);
+        print("start_Month - "+start_Month);
+        print("start_Year - "+start_Year);
+        print("how-many-in-month - "+max_day_month);
+        print("random_day - "+randomStartDay);
+        finishDATE = standartDate(finishDate);//standart Data objects
+
 
 }
+
+run("1/11/2016");
+
