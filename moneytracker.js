@@ -97,3 +97,8 @@ function standartDate(startDay, finishDay){// this function choose and write the
 
 print(standartDate("12/8/2011", "2/11/2013").start);
 print(standartDate("12/8/2011", "2/11/2013").finish);
+
+function plusWeek(nowDay){// function finds a period in 1 week for a transactions
+    var pointOne = standartDate(nowDay, nowDay).start//start day
+    var pointTwo = 
+}
