@@ -47,7 +47,7 @@ function oneDayOfUser(){// we parse all transaction list
         }
     );
 length = i-1;//after last cycle step i=last step+1
-StudentH = {length : length,
+StudentH = {length : length,// StudentH is a hash of transactions and the it has .length
             Type : TypeA ,
             OperationName : OperationNameA,
             AmountMin : AmountMinA,
@@ -87,6 +87,17 @@ function plusWeek(nowDay){// function finds a period in 1 week for a transaction
    /*var now = new Date();*/
   /* print(new Date(2016,12,0).getDate());*/
 
+function makeMonthlyTransactions(StudentH){// we check the list of transactions and if we have a monthly one we generate a random day and make a transaction
+    //there are arrays typeA[1]...typeA[length] - for every transaction
+    for(i=1; i<StudentH.length+1; i++){// we check the transaction list
+        if(
+            (StudentH.period[i] = "Month") && 
+            (StudentH.rate[i] = 1)
+        ){
+            // make a monthly transaction, we need to call random day
+        }
+    }
+}
 function run(startDate, finishDate){// global function runs transaction generation
     var startDATE = standartDate(startDate),
         start_Day = startDATE.getDate(),
@@ -101,6 +112,8 @@ function run(startDate, finishDate){// global function runs transaction generati
         print("start_Year - "+start_Year);
         print("how-many-in-month - "+max_day_month);
         print("random_day - "+randomStartDay);
+        makeTransactions
+        
         finishDATE = standartDate(finishDate);//standart Data objects
 
 
