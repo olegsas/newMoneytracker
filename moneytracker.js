@@ -72,32 +72,23 @@ print(  "Type"+"--"+ oneDayOfUser().Type[i]+"/"+
 );
 }*/
 
-function standartDate(startDay, finishDay){// this function choose and write the transactions from the firstDay to the finishDay
-    var stDate = {};
+function standartDate(anyDay){// this function normalize string date into a Date object
 
-    var startDayA = startDay.split("/"),// we have got an array of 3 numbers in a string type
-        finishDayA = finishDay.split("/");
+    var anyDayA = anyDay.split("/"),// we have got an array of 3 numbers in a string type
     
-    var startDATE = new Date();
-        startDATE.setFullYear(startDayA[2]);// A means Array
-        startDATE.setMonth(startDayA[1]-1);// we have months in range of 0...11
-        startDATE.setDate(startDayA[0]);// startDATE is in a correct format
+    var anyDATE = new Date();
+        anyDATE.setFullYear(anyDayA[2]);// A means Array
+        anyDATE.setMonth(anyDayA[1]-1);// we have months in range of 0...11
+        anyDATE.setDate(anyDayA[0]);// anyDATE is in a correct format
 
-    var finishDATE = new Date();
-        finishDATE.setFullYear(finishDayA[2]);
-        finishDATE.setMonth(finishDayA[1]-1);
-        finishDATE.setDate(finishDayA[0]);// finishDATE is in a correct format
     
-     stDate.start = startDATE;
-     stDate.finish = finishDATE;
-    
-    return stDate;
+    return anyDATE;
 
 }
 
 
 function plusWeek(nowDay){// function finds a period in 1 week for a transactions
-    var pointOne = standartDate(nowDay, nowDay).start//start day
+    var pointOne = standartDate(nowDay)//start day
     var day = (pointOne.getDate());// day of a week in range 0...6
 
     var pointTwo = pointOne;// we assign pointOne to pointTwo because we gonna use a method setDate()
@@ -105,11 +96,7 @@ function plusWeek(nowDay){// function finds a period in 1 week for a transaction
     return pointTwo;
 }    
    print(plusWeek("1/1/2010"));
-/*var D = new Date();
-var day = D.getDate();
-print("old day - " + D);
-print("day-" + day);
-var newDay = day+40;
-var x = D.setDate(newDay);
-print("New date- " + D);*/
-    
+
+function run(startDate, finishDate){// global function runs transaction generation
+
+}
