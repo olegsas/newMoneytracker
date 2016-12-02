@@ -50,8 +50,6 @@ function oneDayOfUser(){// we parse all transaction list
         }
     );
     length = i-1;//after last cycle step i=last step+1
-    print("pure length="+length);
-    print("type of pure length = "+ typeof length);
     StudentH = {len : length,// StudentH is a hash of transactions and the it has .len
             Type : TypeA ,
             OperationName : OperationNameA,
@@ -118,17 +116,15 @@ function makeMonthlyTransactions(start_Day, Month, Year, max_day_month){// we ch
     //there are arrays typeA[1]...typeA[length] - for every transaction
     // if we have a full month then start_Day is 1 and if we have the first month we use the start_Day
     
-    print("$$$oneDayOfUser().length+1 = " + (oneDayOfUser().len+1));
-    
-    print("$$$typeof userLen="+ typeof oneDayOfUser().len);
     for(i=1; i<oneDayOfUser().len+1; i++){// we check the transaction list
         print("i="+i);
         print("oneDayOfUser().Period[i] = "+ oneDayOfUser().Period[i]);
         print("oneDayOfUser().Rate[i] = "+ oneDayOfUser().Rate[i]);
         if(
-            (oneDayOfUser().Period[i] = "Month") && 
-            (oneDayOfUser().Rate[i] = 1)
+            (oneDayOfUser().Period[i] === "Month") && 
+            (oneDayOfUser().Rate[i] === 1)
         ){
+            print("We make $$!!");
             var randomStartDay = Math.floor(Math.random()*(max_day_month-start_Day) + start_Day);
             RandomAmount(oneDayOfUser().AmountMin[i], oneDayOfUser().AmountMax[i],oneDayOfUser().Currency[i])//returns  amount 
             // make a monthly transaction, we need to call random day
