@@ -86,6 +86,20 @@ function plusWeek(nowDay){// function finds a period in 1 week for a transaction
    /*print(plusWeek("1/1/2010"));
    /*var now = new Date();*/
   /* print(new Date(2016,12,0).getDate());*/
+function RandomAmount(AmountMin, AmountMax, Currency){
+    var result ; //we will return a result only, we do not need to return currency
+    switch(Currency){
+        case Usd:
+            result = randomUsd(AmountMin, AmountMax);break;
+        
+        case Byr:
+            result = randomByr(AmountMin, AmountMax);break;
+        
+        case Byn:
+            result.amount = randomByn(AmountMin, AmountMax);break;
+    }
+    return result;
+}//RandomAmount returns random result 
 
 function makeMonthlyTransactions(start_Day, Month, Year, max_day_month){// we check the list of transactions and if we have a monthly one we generate a random day and make a transaction
     //there are arrays typeA[1]...typeA[length] - for every transaction
@@ -96,8 +110,9 @@ function makeMonthlyTransactions(start_Day, Month, Year, max_day_month){// we ch
             (StudentH.rate[i] = 1)
         ){
             var randomStartDay = Math.floor(Math.random()*(max_day_month-start_Day) + start_Day);
-            RandomAmount(AmountMin[i], AmountMax[i],Currency[i])//returns object with fields amount and currency
+            RandomAmount(AmountMin[i], AmountMax[i],Currency[i])//returns  amount 
             // make a monthly transaction, we need to call random day
+            WriteTransaction();//we write a transaction and only we need to give a random name for it
         }
     }
 }
