@@ -47,6 +47,7 @@ function oneDayOfUser(){// we parse all transaction list
         }
     );
 length = i-1;//after last cycle step i=last step+1
+print("pure length="+length);
 StudentH = {length : length,// StudentH is a hash of transactions and the it has .length
             Type : TypeA ,
             OperationName : OperationNameA,
@@ -108,18 +109,22 @@ function WriteTransaction(){
 function makeMonthlyTransactions(start_Day, Month, Year, max_day_month){// we check the list of transactions and if we have a monthly one we generate a random day and make a transaction
     //there are arrays typeA[1]...typeA[length] - for every transaction
     // if we have a full month then start_Day is 1 and if we have the first month we use the start_Day
-    for(i=1; i<StudentH.length+1; i++){// we check the transaction list
+    print("oneDayOfUser.length+1 = " + oneDayOfUser.length+1);
+    print("typeof="+ typeof oneDayOfUser.length);
+    for(i=1; i<oneDayOfUser.length+1; i++){// we check the transaction list
+        print("oneDayOfUser.Period[i] = "+ oneDayOfUser.Period[i]);
+        print("oneDayOfUser.Rate[i] = "+ oneDayOfUser.Rate[i]);
         if(
-            (StudentH.period[i] = "Month") && 
-            (StudentH.rate[i] = 1)
+            (oneDayOfUser.Period[i] = "Month") && 
+            (oneDayOfUser.Rate[i] = 1)
         ){
             var randomStartDay = Math.floor(Math.random()*(max_day_month-start_Day) + start_Day);
             RandomAmount(AmountMin[i], AmountMax[i],Currency[i])//returns  amount 
             // make a monthly transaction, we need to call random day
             var Number_of_the_name_of_transaction = Math.floor((Math.random()*NUMBER_OF_CATEGORY_NAMES));//0...NUMBER-1
             // Math.random()<1 that`s why name_of_transactions<NUMBER_OF_CATEGORY_NAMES
-            var transactionName = db.student.find({"transaction":StudentH.OperationName[i]});
-            print(transactionName);
+            var transactionName = db.student.find({"transaction":oneDayOfUser.OperationName[i]});
+            print("transactionName - " + transactionName);
             WriteTransaction();//we write a transaction and only we need to give a random name for it
         }
     }
