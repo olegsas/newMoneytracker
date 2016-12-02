@@ -124,7 +124,6 @@ function makeMonthlyTransactions(start_Day, Month, Year, max_day_month){// we ch
             (oneDayOfUser().Period[i] === "Month") && 
             (oneDayOfUser().Rate[i] === 1)
         ){
-            print("We make $$!!");
             var randomStartDay = Math.floor(Math.random()*(max_day_month-start_Day) + start_Day);
             RandomAmount(oneDayOfUser().AmountMin[i], oneDayOfUser().AmountMax[i],oneDayOfUser().Currency[i])//returns  amount 
             // make a monthly transaction, we need to call random day
