@@ -87,13 +87,16 @@ function plusWeek(nowDay){// function finds a period in 1 week for a transaction
    /*var now = new Date();*/
   /* print(new Date(2016,12,0).getDate());*/
 
-function makeMonthlyTransactions(StudentH){// we check the list of transactions and if we have a monthly one we generate a random day and make a transaction
+function makeMonthlyTransactions(start_Day, Month, Year, max_day_month){// we check the list of transactions and if we have a monthly one we generate a random day and make a transaction
     //there are arrays typeA[1]...typeA[length] - for every transaction
+    // if we have a full month then start_Day is 1 and if we have the first month we use the start_Day
     for(i=1; i<StudentH.length+1; i++){// we check the transaction list
         if(
             (StudentH.period[i] = "Month") && 
             (StudentH.rate[i] = 1)
         ){
+            var randomStartDay = Math.floor(Math.random()*(max_day_month-start_Day) + start_Day);
+            RandomAmount(AmountMin[i], AmountMax[i],Currency[i])//returns object with fields amount and currency
             // make a monthly transaction, we need to call random day
         }
     }
@@ -112,7 +115,12 @@ function run(startDate, finishDate){// global function runs transaction generati
         print("start_Year - "+start_Year);
         print("how-many-in-month - "+max_day_month);
         print("random_day - "+randomStartDay);
-        makeTransactions
+        
+        makeTransactionsMonthlyFirstMonth(start_Day, start_Month, start_Year,max-day_month)// we call this function
+            //to make all monthly transactions for the first month
+
+
+        
         
         finishDATE = standartDate(finishDate);//standart Data objects
 
