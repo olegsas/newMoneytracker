@@ -1,5 +1,5 @@
+// We write the constants here
 var NUMBER_OF_CATEGORY_NAMES = 4;//how many names are in one category
-
 
 function randomUsd(min, max){
     var minCent = min*100;
@@ -51,7 +51,8 @@ function oneDayOfUser(){// we parse all transaction list
     );
     length = i-1;//after last cycle step i=last step+1
     print("pure length="+length);
-    StudentH = {length : length,// StudentH is a hash of transactions and the it has .length
+    print("type of pure length = "+ typeof length);
+    StudentH = {len : length,// StudentH is a hash of transactions and the it has .len
             Type : TypeA ,
             OperationName : OperationNameA,
             AmountMin : AmountMinA,
@@ -117,9 +118,11 @@ function makeMonthlyTransactions(start_Day, Month, Year, max_day_month){// we ch
     //there are arrays typeA[1]...typeA[length] - for every transaction
     // if we have a full month then start_Day is 1 and if we have the first month we use the start_Day
     
-    print("oneDayOfUser().length+1 = " + oneDayOfUser().length+1);
-    print("typeof="+ typeof oneDayOfUser().length);
-    for(i=1; i<oneDayOfUser().length+1; i++){// we check the transaction list
+    print("$$$oneDayOfUser().length+1 = " + (oneDayOfUser().len+1));
+    
+    print("$$$typeof userLen="+ typeof oneDayOfUser().len);
+    for(i=1; i<oneDayOfUser().len+1; i++){// we check the transaction list
+        print("i="+i);
         print("oneDayOfUser().Period[i] = "+ oneDayOfUser().Period[i]);
         print("oneDayOfUser().Rate[i] = "+ oneDayOfUser().Rate[i]);
         if(
