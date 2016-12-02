@@ -1,3 +1,6 @@
+var NUMBER_OF_CATEGORY_NAMES = 4;//how many names are in one category
+
+
 function randomUsd(min, max){
     var minCent = min*100;
     var maxCent = max*100;
@@ -46,14 +49,13 @@ function oneDayOfUser(){// we parse all transaction list
                 i++; 
         }
     );
-length = i-1;//after last cycle step i=last step+1
-print("pure length="+length);
-StudentH = {length : length,// StudentH is a hash of transactions and the it has .length
+    length = i-1;//after last cycle step i=last step+1
+    print("pure length="+length);
+    StudentH = {length : length,// StudentH is a hash of transactions and the it has .length
             Type : TypeA ,
             OperationName : OperationNameA,
             AmountMin : AmountMinA,
             AmountMax : AmountMaxA,
-            AmountMin : AmountMinA,
             Currency : CurrencyA,
             Rate : RateA,
             Period : PeriodA,
@@ -88,16 +90,21 @@ function plusWeek(nowDay){// function finds a period in 1 week for a transaction
    /*var now = new Date();*/
   /* print(new Date(2016,12,0).getDate());*/
 function RandomAmount(AmountMin, AmountMax, Currency){
-    var result ; //we will return a result only, we do not need to return currency
+    var result ;
+    var AmountMin = AmountMin,
+        AmountMax = AmountMax,
+        Currency = Currency;//we will return a result only, we do not need to return currency
+    print("currency= "+Currency);
     switch(Currency){
-        case Usd:
+        case "Usd":
             result = randomUsd(AmountMin, AmountMax);break;
         
-        case Byr:
+        case "Byr":
             result = randomByr(AmountMin, AmountMax);break;
         
-        case Byn:
-            result.amount = randomByn(AmountMin, AmountMax);break;
+        case "Byn":
+            result = randomByn(AmountMin, AmountMax);break;
+        
     }
     return result;
 }//RandomAmount returns random result 
@@ -109,28 +116,28 @@ function WriteTransaction(){
 function makeMonthlyTransactions(start_Day, Month, Year, max_day_month){// we check the list of transactions and if we have a monthly one we generate a random day and make a transaction
     //there are arrays typeA[1]...typeA[length] - for every transaction
     // if we have a full month then start_Day is 1 and if we have the first month we use the start_Day
-    print("oneDayOfUser.length+1 = " + oneDayOfUser.length+1);
-    print("typeof="+ typeof oneDayOfUser.length);
-    for(i=1; i<oneDayOfUser.length+1; i++){// we check the transaction list
-        print("oneDayOfUser.Period[i] = "+ oneDayOfUser.Period[i]);
-        print("oneDayOfUser.Rate[i] = "+ oneDayOfUser.Rate[i]);
+    
+    print("oneDayOfUser().length+1 = " + oneDayOfUser().length+1);
+    print("typeof="+ typeof oneDayOfUser().length);
+    for(i=1; i<oneDayOfUser().length+1; i++){// we check the transaction list
+        print("oneDayOfUser().Period[i] = "+ oneDayOfUser().Period[i]);
+        print("oneDayOfUser().Rate[i] = "+ oneDayOfUser().Rate[i]);
         if(
-            (oneDayOfUser.Period[i] = "Month") && 
-            (oneDayOfUser.Rate[i] = 1)
+            (oneDayOfUser().Period[i] = "Month") && 
+            (oneDayOfUser().Rate[i] = 1)
         ){
             var randomStartDay = Math.floor(Math.random()*(max_day_month-start_Day) + start_Day);
-            RandomAmount(AmountMin[i], AmountMax[i],Currency[i])//returns  amount 
+            RandomAmount(oneDayOfUser().AmountMin[i], oneDayOfUser().AmountMax[i],oneDayOfUser().Currency[i])//returns  amount 
             // make a monthly transaction, we need to call random day
             var Number_of_the_name_of_transaction = Math.floor((Math.random()*NUMBER_OF_CATEGORY_NAMES));//0...NUMBER-1
             // Math.random()<1 that`s why name_of_transactions<NUMBER_OF_CATEGORY_NAMES
-            var transactionName = db.student.find({"transaction":oneDayOfUser.OperationName[i]});
+            var transactionName = db.student.find({"transaction":oneDayOfUser().OperationName[i]});
             print("transactionName - " + transactionName);
             WriteTransaction();//we write a transaction and only we need to give a random name for it
         }
     }
 }
 function run(startDate, finishDate){// global function runs transaction generation
-    var NUMBER_OF_CATEGORY_NAMES = 4;//how many names are in one category
     var startDATE = standartDate(startDate),
         start_Day = startDATE.getDate(),
         start_Month = startDATE.getMonth(),// month is in range 0...11
