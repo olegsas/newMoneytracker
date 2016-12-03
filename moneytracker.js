@@ -114,7 +114,7 @@ function WriteTransaction(Date, Type, Category, Name, Amount, Currency, Account)
                            "Amount": Amount, "Currency": Currency, "Account": Account});
 }// we insert document into the collection
 
-function makeMonthlyTransactions(start_Day, Month, Year, max_day_month){// we check the list of transactions and if we have a monthly one we generate a random day and make a transaction
+function makeMonthlyTransactions(start_Day, finish_Day, Month, Year){// we check the list of transactions and if we have a monthly one we generate a random day and make a transaction
     //there are arrays typeA[1]...typeA[length] - for every transaction
     // if we have a full month then start_Day is 1 and if we have the first month we use the start_Day
     
@@ -126,7 +126,7 @@ function makeMonthlyTransactions(start_Day, Month, Year, max_day_month){// we ch
             (oneDayOfUser().Period[i] === "Month") && 
             (oneDayOfUser().Rate[i] === 1)
         ){
-            var transactionDay = Math.floor(Math.random()*(max_day_month-start_Day) + start_Day);
+            var transactionDay = Math.floor(Math.random()*(finish_Day - start_Day) + start_Day);
             var transactionAmount = RandomAmount(oneDayOfUser().AmountMin[i], oneDayOfUser().AmountMax[i],oneDayOfUser().Currency[i])//returns  amount 
             // make a monthly transaction, we need to call random day
             var Number_of_the_name_of_transaction = Math.floor((Math.random()*NUMBER_OF_CATEGORY_NAMES));//0...NUMBER-1
@@ -166,6 +166,7 @@ function run(startDate, finishDate){// global function runs transaction generati
         start_Month = startDATE.getMonth(),// month is in range 0...11
         start_Year = startDATE.getYear(),
         max_day_month = new  Date(start_Year, start_Month+1, 0).getDate();// how many days in month
+    var finish_Day = max_day_month; // for the first month
         
         // we choose a random day between a start day and day max_day_month
         var randomStartDay = Math.floor(Math.random()*(max_day_month-start_Day) + start_Day);
@@ -175,7 +176,7 @@ function run(startDate, finishDate){// global function runs transaction generati
         print("how-many-in-month - "+max_day_month);
         print("random_day - "+randomStartDay);
         
-        makeMonthlyTransactions(start_Day, start_Month, start_Year,max_day_month)// we call this function
+        makeMonthlyTransactions(start_Day, finish_Day, start_Month, start_Year)// we call this function
             //to make all monthly transactions for the first month
 
 
@@ -186,5 +187,5 @@ function run(startDate, finishDate){// global function runs transaction generati
 
 }
 
-run("1/11/2010", "3/5/2014");
+run("1/1/2010", "25/11/2016");//start date and final date
 
