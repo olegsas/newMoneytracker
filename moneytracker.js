@@ -108,9 +108,11 @@ function RandomAmount(AmountMin, AmountMax, Currency){
     return result;
 }//RandomAmount returns random result 
 
-function WriteTransaction(){
-    //
-}
+function WriteTransaction(Date, Type, Category, Name, Amount, Currency, Account){
+    //Date is in standart format
+    db.transactions.insert({"Date": Date, "Type": Type, "Category": Category, "Name": Name,
+                           "Amount": Amount, "Currency": Currency, "Account": Account});
+}// we insert document into the collection
 
 function makeMonthlyTransactions(start_Day, Month, Year, max_day_month){// we check the list of transactions and if we have a monthly one we generate a random day and make a transaction
     //there are arrays typeA[1]...typeA[length] - for every transaction
@@ -134,7 +136,7 @@ function makeMonthlyTransactions(start_Day, Month, Year, max_day_month){// we ch
             // we have an object from the cursor with transactions names of the operation
             print("transactionName array - " + transactionNameH[0].names);
             var transactionNameOnly = transactionNameH[0].names[Number_of_the_name_of_transaction];
-            print("name of any transaction = "+ db.names.find({"transaction":oneDayOfUser().OperationName[i]}));
+            print("name of any transaction = "+ transactionNameOnly);
             var transactionType = oneDayOfUser().Type[i];
             var transactionCurrency = oneDayOfUser().Currency[i];
             var transactionAccount = oneDayOfUser().Account[i];
@@ -152,7 +154,9 @@ function makeMonthlyTransactions(start_Day, Month, Year, max_day_month){// we ch
 
             
             
-            WriteTransaction()// use all this variables);//we write a transaction and only we need to give a random name for it
+            WriteTransaction(transactionDay,transactionType, operationName, transactionNameOnly, 
+                             transactionAmount, transactionCurrency, transactionAccount)
+            // use all this variables);//we write a transaction and only we need to give a random name for it
         }
     }
 }
