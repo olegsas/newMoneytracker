@@ -210,11 +210,17 @@ function run(startDate, finishDate){// global function runs transaction generati
         last_Day = max_day_month;
     
         makeMonthlyTransactions(now_Day, last_Day, now_Month, now_Year);//february
-    var checkDATE = nowDATE;// we create a cycle for a checkDATE
+    var checkDATE = nowDATE;var q=0;// we create a cycle for a checkDATE
+    print("finishDATE = "+finishDATE);
     while (checkDATE < finishDATE){
+        print("cycle starts!")
+        print("nowDATE-BEGIN=" +nowDATE);
+        print("checkDATE-BEGIN = "+checkDATE);
+        print("finishDAET - begin "+finishDATE);
+        
         nextMonthDATE = nowDATE;// now nextMonthDATE is the 1-th of this month
         nextMonthDATE.setDate(nextMonthDATE.getDate()+last_Day);// the first day of the next month March
-        print("## 1 data will be = "+nextMonthDATE);
+        print(" 1 data will be = "+nextMonthDATE);
 
         nowDATE = nextMonthDATE;//we begin a new month;
         now_Day = nowDATE.getDate();
@@ -229,8 +235,9 @@ function run(startDate, finishDate){// global function runs transaction generati
         endDATE.setDate(endDATE.getDate()+max_day_month-1);//last day of this month
         checkDATE = endDATE;
         
-        print("nowDATE=" +nowDATE);
-        print("checkDATE = "+checkDATE);
+        print("nowDATE-end=" +nowDATE);
+        print("checkDATE-end = "+checkDATE);
+        print("finishDATE - end="+finishDATE);
     }
 
 }
