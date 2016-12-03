@@ -196,8 +196,21 @@ function run(startDate, finishDate){// global function runs transaction generati
 
     var finish_Day = max_day_month; // for the first month
         
-    makeMonthlyTransactions(start_Day, finish_Day, start_Month, start_Year)// we call this function
-            //to make all monthly transactions for the first month
+    makeMonthlyTransactions(start_Day, finish_Day, start_Month, start_Year);// we call this function
+    //to make all monthly transactions for the first month
+
+    var nowDATE = new Date(start_Year, start_Month, finish_Day);
+    nowDATE.setDate(nowDATE.getDate()+1);
+    print("###now NOW DATE = "+nowDATE);
+
+    var now_Day = nowDATE.getDate();
+    var now_Month = nowDATE.getMonth();
+    var now_Year = nowDATE.getYear();
+    max_day_month = new Date(now_Year, now_Month+1,0).getDate();
+    print("##February days = "+max_day_month);
+    finish_Day = max_day_month;
+
+    makeMonthlyTransactions(start_Day, finish_Day, start_Month, start_Year);//february
 
 
         
