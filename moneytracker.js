@@ -126,8 +126,8 @@ function makeMonthlyTransactions(start_Day, finish_Day, Month, Year){// we check
         print("oneDayOfUser().Rate[i] = "+ oneDayOfUser().Rate[i]);
         if(
             (oneDayOfUser().Period[i] === "Month") && 
-            (oneDayOfUser().Rate[i] === 1)
-        ){
+            (oneDayOfUser().Rate[i] === 1)){
+        
             var transactionDay = Math.floor(Math.random()*(finish_Day - start_Day) + start_Day);
             var transaction_Date = new Date();// we convert it into an object format
             transaction_Date.setFullYear(Year);
@@ -160,13 +160,25 @@ function makeMonthlyTransactions(start_Day, finish_Day, Month, Year){// we check
             // transactionAccount - the account for the transaction
 
             
-            
-            WriteTransaction(transactionDay,transactionType, operationName, transactionNameOnly, 
+            if(transaction_Date >= DATE_OF_DENOMINATION){
+                if((oneDayOfUser().Currency[i] === "Byn") || (oneDayOfUser().Currency[i] === "Usd")){
+                    WriteTransaction(transactionDay,transactionType, operationName, transactionNameOnly, 
                              transactionAmount, transactionCurrency, transactionAccount)
+                }
+            }
+
+            if(transaction_Date < DATE_OF_DENOMINATION){
+                if((oneDayOfUser().Currency[i] === "Byr") || (oneDayOfUser().Currency[i] === "Usd")){
+                    WriteTransaction(transactionDay,transactionType, operationName, transactionNameOnly, 
+                             transactionAmount, transactionCurrency, transactionAccount)
+                }
+            }
+            // this 2 if-conditions checks if the denomination time, and choose the correct currency of the operation
             // use all this variables);//we write a transaction and only we need to give a random name for it
         }
     }
 }
+
 function run(startDate, finishDate){// global function runs transaction generation
     var startDATE = standartDate(startDate),
         start_Day = startDATE.getDate(),
