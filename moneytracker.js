@@ -1,7 +1,6 @@
 // We write the constants here
 var NUMBER_OF_CATEGORY_NAMES = 4;//how many names are in one category
 var DATE_OF_DENOMINATION = new Date("2016-07-01");//the date of denomination, the constants
-print("@@Date of denomination - "+DATE_OF_DENOMINATION);
 
 function randomUsd(min, max){
     var minCent = min*100;
@@ -162,14 +161,14 @@ function makeMonthlyTransactions(start_Day, finish_Day, Month, Year){// we check
             
             if(transaction_Date >= DATE_OF_DENOMINATION){
                 if((oneDayOfUser().Currency[i] === "Byn") || (oneDayOfUser().Currency[i] === "Usd")){
-                    WriteTransaction(transactionDay,transactionType, operationName, transactionNameOnly, 
+                    WriteTransaction(transaction_Date,transactionType, operationName, transactionNameOnly, 
                              transactionAmount, transactionCurrency, transactionAccount)
                 }
             }
 
             if(transaction_Date < DATE_OF_DENOMINATION){
                 if((oneDayOfUser().Currency[i] === "Byr") || (oneDayOfUser().Currency[i] === "Usd")){
-                    WriteTransaction(transactionDay,transactionType, operationName, transactionNameOnly, 
+                    WriteTransaction(transaction_Date,transactionType, operationName, transactionNameOnly, 
                              transactionAmount, transactionCurrency, transactionAccount)
                 }
             }
@@ -206,5 +205,5 @@ function run(startDate, finishDate){// global function runs transaction generati
 
 }
 
-run("1/1/2010", "25/11/2016");//start date and final date
+run("1/10/2016", "25/11/2016");//start date and final date
 
