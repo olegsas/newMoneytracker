@@ -129,11 +129,11 @@ function makeMonthlyTransactions(start_Day, Month, Year, max_day_month){// we ch
             // make a monthly transaction, we need to call random day
             var Number_of_the_name_of_transaction = Math.floor((Math.random()*NUMBER_OF_CATEGORY_NAMES));//0...NUMBER-1
             // Math.random()<1 that`s why name_of_transactions<NUMBER_OF_CATEGORY_NAMES
-            var operationName =  oneDayOfUser().OperationName[i])
+            var operationName =  oneDayOfUser().OperationName[i]
             var transactionNameH = db.names.find({"transaction":oneDayOfUser().OperationName[i]},{"names":1,_id:0}).toArray();
             // we have an object from the cursor with transactions names of the operation
             print("transactionName array - " + transactionNameH[0].names);
-            var transactionNameOnly = transactionNameH[0].names[Number_of_the_name_of_transaction]);
+            var transactionNameOnly = transactionNameH[0].names[Number_of_the_name_of_transaction];
             print("name of any transaction = "+ db.names.find({"transaction":oneDayOfUser().OperationName[i]}));
             var transactionType = oneDayOfUser().Type[i];
             var transactionCurrency = oneDayOfUser().Currency[i];
@@ -152,7 +152,7 @@ function makeMonthlyTransactions(start_Day, Month, Year, max_day_month){// we ch
 
             
             
-            WriteTransaction(// use all this variables);//we write a transaction and only we need to give a random name for it
+            WriteTransaction()// use all this variables);//we write a transaction and only we need to give a random name for it
         }
     }
 }
