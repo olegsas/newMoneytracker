@@ -179,22 +179,24 @@ function makeMonthlyTransactions(start_Day, finish_Day, Month, Year){// we check
 }
 
 function run(startDate, finishDate){// global function runs transaction generation
-    var startDATE = standartDate(startDate),
-        start_Day = startDATE.getDate(),
-        start_Month = startDATE.getMonth(),// month is in range 0...11
-        start_Year = startDATE.getFullYear(),
-        max_day_month = new  Date(start_Year, start_Month+1, 0).getDate();// how many days in month
+    var startDATE = standartDate(startDate);
+    print("##startDATE-"+startDATE);
+
+    var start_Day = startDATE.getDate();
+    print("##start_Day - "+ start_Day);
+
+    var start_Month = startDATE.getMonth();// month is in range 0...11
+    print("##start_Month - "+start_Month);
+
+    var start_Year = startDATE.getFullYear();
+    print("##start_Year - "+start_Year);
+
+    var max_day_month = new  Date(start_Year, start_Month+1, 0).getDate();// how many days in month
+    print("##max_day_month - "+max_day_month);
+
     var finish_Day = max_day_month; // for the first month
         
-        // we choose a random day between a start day and day max_day_month
-        var randomStartDay = Math.floor(Math.random()*(max_day_month-start_Day) + start_Day);
-        print("start_Day - "+ start_Day);
-        print("start_Month - "+start_Month);
-        print("start_Year - "+start_Year);
-        print("how-many-in-month - "+max_day_month);
-        print("random_day - "+randomStartDay);
-        
-        makeMonthlyTransactions(start_Day, finish_Day, start_Month, start_Year)// we call this function
+    makeMonthlyTransactions(start_Day, finish_Day, start_Month, start_Year)// we call this function
             //to make all monthly transactions for the first month
 
 
@@ -205,5 +207,5 @@ function run(startDate, finishDate){// global function runs transaction generati
 
 }
 
-run("1/10/2016", "25/11/2016");//start date and final date
+run("1/1/2010", "25/11/2016");//start date and final date
 
