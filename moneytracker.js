@@ -1,5 +1,7 @@
 // We write the constants here
 var NUMBER_OF_CATEGORY_NAMES = 4;//how many names are in one category
+var DATE_OF_DENOMINATION = new Date("2016-07-01");//the date of denomination, the constants
+print("@@Date of denomination - "+DATE_OF_DENOMINATION);
 
 function randomUsd(min, max){
     var minCent = min*100;
@@ -127,6 +129,11 @@ function makeMonthlyTransactions(start_Day, finish_Day, Month, Year){// we check
             (oneDayOfUser().Rate[i] === 1)
         ){
             var transactionDay = Math.floor(Math.random()*(finish_Day - start_Day) + start_Day);
+            var transaction_Date = new Date();// we convert it into an object format
+            transaction_Date.setFullYear(Year);
+            transaction_Date.setMonth(Month);
+            transaction_Date.setDate(transactionDay);
+            print("@@Full transaction date is"+transaction_Date);
             var transactionAmount = RandomAmount(oneDayOfUser().AmountMin[i], oneDayOfUser().AmountMax[i],oneDayOfUser().Currency[i])//returns  amount 
             // make a monthly transaction, we need to call random day
             var Number_of_the_name_of_transaction = Math.floor((Math.random()*NUMBER_OF_CATEGORY_NAMES));//0...NUMBER-1
@@ -164,7 +171,7 @@ function run(startDate, finishDate){// global function runs transaction generati
     var startDATE = standartDate(startDate),
         start_Day = startDATE.getDate(),
         start_Month = startDATE.getMonth(),// month is in range 0...11
-        start_Year = startDATE.getYear(),
+        start_Year = startDATE.getFullYear(),
         max_day_month = new  Date(start_Year, start_Month+1, 0).getDate();// how many days in month
     var finish_Day = max_day_month; // for the first month
         
