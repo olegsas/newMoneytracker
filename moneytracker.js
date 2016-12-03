@@ -181,36 +181,64 @@ function makeMonthlyTransactions(start_Day, finish_Day, Month, Year){// we check
 function run(startDate, finishDate){// global function runs transaction generation
     var startDATE = standartDate(startDate);
     print("##startDATE-"+startDATE);
-
     var start_Day = startDATE.getDate();
     print("##start_Day - "+ start_Day);
-
     var start_Month = startDATE.getMonth();// month is in range 0...11
     print("##start_Month - "+start_Month);
-
     var start_Year = startDATE.getFullYear();
     print("##start_Year - "+start_Year);
 
     var max_day_month = new  Date(start_Year, start_Month+1, 0).getDate();// how many days in month
     print("##max_day_month - "+max_day_month);
 
-    var finish_Day = max_day_month; // for the first month
+    var last_Day = max_day_month; // for the first month
         
-    makeMonthlyTransactions(start_Day, finish_Day, start_Month, start_Year);// we call this function
+    makeMonthlyTransactions(start_Day, last_Day, start_Month, start_Year);// we call this function
     //to make all monthly transactions for the first month
 
-    var nowDATE = new Date(start_Year, start_Month, finish_Day);
-    nowDATE.setDate(nowDATE.getDate()+1);
-    print("###now NOW DATE = "+nowDATE);
+        var nowDATE = new Date(start_Year, start_Month, last_Day);
+        nowDATE.setDate(nowDATE.getDate()+1);
+        print("### 1 now NOW DATE = "+nowDATE);// 1-st February
 
-    var now_Day = nowDATE.getDate();
-    var now_Month = nowDATE.getMonth();
-    var now_Year = nowDATE.getYear();
+        var now_Day = nowDATE.getDate();
+        print("##now_Day - "+now_Day);
+        var now_Month = nowDATE.getMonth();
+        var now_Year = nowDATE.getFullYear();
+        max_day_month = new Date(now_Year, now_Month+1,0).getDate();
+        print("##February days = "+max_day_month);
+        last_Day = max_day_month;
+    
+        makeMonthlyTransactions(now_Day, last_Day, now_Month, now_Year);//february
+    
+    nextMonthDATE = nowDATE;// now nextMonthDATE is the 1-th of this month
+    nextMonthDATE.setDate(nextMonthDATE.getDate()+last_Day);// the first day of the next month March
+    print("## 1 March will be = "+nextMonthDATE);
+
+    nowDATE = nextMonthDATE;//we begin a new month;
+    now_Day = nowDATE.getDate();
+    now_Month = nowDATE.getMonth();
+    now_Year = nowDATE.getFullYear();
     max_day_month = new Date(now_Year, now_Month+1,0).getDate();
-    print("##February days = "+max_day_month);
-    finish_Day = max_day_month;
+    print("##March days = "+max_day_month);
+    last_Day = max_day_month;
+    
+    makeMonthlyTransactions(start_Day, last_Day, now_Month, now_Year);//March
+    
+    nextMonthDATE = nowDATE;//now nextMonthDATE it is the 1-st of last month
+    nextMonthDATE.setDate(nextMonthDATE.getDate()+last_Day);// the first day of the next month April
+    print("## 1 April will be = "+nextMonthDATE);
 
-    makeMonthlyTransactions(start_Day, finish_Day, start_Month, start_Year);//february
+    nowDATE = nextMonthDATE;//we begin a new month;
+    now_Day = nowDATE.getDate();
+    now_Month = nowDATE.getMonth();
+    now_Year = nowDATE.getFullYear();
+    max_day_month = new Date(now_Year, now_Month+1,0).getDate();
+    print("##April days = "+max_day_month);
+    last_Day = max_day_month;
+    
+    makeMonthlyTransactions(start_Day, last_Day, now_Month, now_Year);//April
+
+   
 
 
         
