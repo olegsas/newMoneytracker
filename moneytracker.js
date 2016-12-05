@@ -377,6 +377,7 @@ function run(startDate, finishDate){// global function runs transaction generati
     last_Day = max_day_month;
     
     makeMonthlyTransactions(start_Day, last_Day, now_Month, now_Year);//February
+    // it works
 
    
 
